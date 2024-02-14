@@ -14,6 +14,7 @@ const SingandLog = () => {
   const ConfirmPassword = useRef();
   const [Islogin, Setlogin] = useState(false);
   const [UserErrors, SetUserErrors] = useState(false);
+  const [Loading, Setloading] = useState(false);
 
   const { Onlogin, IsUserlog } = Usecontextalltime();
 
@@ -23,12 +24,15 @@ const SingandLog = () => {
 
   const Onsubmithnadler = async (e) => {
     e.preventDefault();
+    Setloading(true);
 
     let Useremail = emailref.current.value;
     let UserPassword = Password.current.value;
-    let UserConfirmpassword = ConfirmPassword.current.value;
+    if (IsUserlog) {
+      let UserConfirmpassword = ConfirmPassword.current.value;
+    }
 
-    if (UserPassword !== UserConfirmpassword) {
+    if (IsUserlog && UserPassword !== UserConfirmpassword) {
       Password.current.focus();
       SetUserErrors(true);
       return;
@@ -41,7 +45,7 @@ const SingandLog = () => {
         let response = await createUserWithEmailAndPassword(
           Auth,
           Useremail,
-          UserConfirmpassword
+          UserPassword
         );
         console.log(response);
 
@@ -55,7 +59,7 @@ const SingandLog = () => {
         let response = await signInWithEmailAndPassword(
           Auth,
           Useremail,
-          UserConfirmpassword
+          UserPassword
         );
         Onlogin(response.user.uid);
       } catch (error) {
@@ -63,12 +67,13 @@ const SingandLog = () => {
         alert(error);
       }
     }
+    Setloading(false);
   };
 
   return (
     <div className="fullpage">
       <div className="container">
-        <h1>{Islogin ? "LOG IN" : "SIGN IN "}</h1>
+        <h1>{Islogin ? "LOG IN" : "SIGN UP"}</h1>
         <form onSubmit={Onsubmithnadler}>
           <input
             type="text"
@@ -78,24 +83,26 @@ const SingandLog = () => {
             onChange={() => SetUserErrors(false)}
           ></input>
           <input
-            type="text"
+            type="password"
             placeholder="Password"
             ref={Password}
             style={UserErrors ? { color: "red" } : null}
             onChange={() => SetUserErrors(false)}
           ></input>
-          <input
-            type="text"
-            placeholder="Confirm Password"
-            ref={ConfirmPassword}
-            style={UserErrors ? { color: "red" } : null}
-            onChange={() => SetUserErrors(false)}
-          ></input>
-
-          <button>{Islogin ? "log in" : "Sign in "}</button>
+          {!Islogin && (
+            <input
+              type="password"
+              placeholder="Confirm Password"
+              ref={ConfirmPassword}
+              style={UserErrors ? { color: "red" } : null}
+              onChange={() => SetUserErrors(false)}
+            ></input>
+          )}
+          <p>{Loading ? "Lodaing" : null}</p>
+          <button>{Islogin ? "Log in" : "Sign up"}</button>
         </form>
         <button onClick={Ontgoole}>
-          {!Islogin ? "Have an Account ? Log in " : "Create New Account"}
+          {Islogin ? "Create New Account" : "Have an Account? Log in"}
         </button>
       </div>
     </div>

@@ -1,0 +1,32 @@
+.welcome-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+}
+
+.title {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.message {
+  font-size: 16px;
+  color: #888;
+  margin-bottom: 20px;
+}
+
+.complete-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #4caf50;
+  color: white;
+  cursor: pointer;
+}

@@ -6,11 +6,13 @@ import {
   signInWithEmailAndPassword
 } from "firebase/auth";
 import "./Singandlog.css";
+
 const SingandLog = () => {
   const emailref = useRef();
   const Password = useRef();
   const ConfirmPassword = useRef();
   const [Islogin, Setlogin] = useState(false);
+  const [UserErrors, SetUserErrors] = useState(false);
 
   const Ontgoole = () => {
     Setlogin((prev) => !prev);
@@ -22,9 +24,14 @@ const SingandLog = () => {
     let UserPassword = Password.current.value;
     let UserConfirmpassword = ConfirmPassword.current.value;
 
-    if (UserPassword != UserConfirmpassword) {
+    if (UserPassword !== UserConfirmpassword) {
       Password.current.focus();
+      SetUserErrors(true);
+      return;
+    } else {
+      SetUserErrors(false);
     }
+
     if (!Islogin) {
       try {
         let response = await createUserWithEmailAndPassword(
@@ -34,7 +41,8 @@ const SingandLog = () => {
         );
         console.log(response);
       } catch (error) {
-        console.log(error);
+        SetUserErrors(true);
+        alert(error);
       }
     } else {
       try {
@@ -45,7 +53,8 @@ const SingandLog = () => {
         );
         console.log(response);
       } catch (error) {
-        console.log(error);
+        SetUserErrors(true);
+        alert(error);
       }
     }
   };
@@ -54,12 +63,26 @@ const SingandLog = () => {
     <div className="fullpage">
       <div className="container">
         <form onSubmit={Onsubmithnadler}>
-          <input type="text" placeholder="Email" ref={emailref}></input>
-          <input type="text" placeholder="Password" ref={Password}></input>
+          <input
+            type="text"
+            placeholder="Email"
+            ref={emailref}
+            style={UserErrors ? { color: "red" } : null}
+            onChange={() => SetUserErrors(false)}
+          ></input>
+          <input
+            type="text"
+            placeholder="Password"
+            ref={Password}
+            style={UserErrors ? { color: "red" } : null}
+            onChange={() => SetUserErrors(false)}
+          ></input>
           <input
             type="text"
             placeholder="Confirm Password"
             ref={ConfirmPassword}
+            style={UserErrors ? { color: "red" } : null}
+            onChange={() => SetUserErrors(false)}
           ></input>
           <button>{Islogin ? "log in" : "Sign in "}</button>
         </form>

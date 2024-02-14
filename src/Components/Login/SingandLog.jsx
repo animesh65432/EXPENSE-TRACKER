@@ -6,6 +6,7 @@ import {
   signInWithEmailAndPassword
 } from "firebase/auth";
 import "./Singandlog.css";
+import { Usecontextalltime } from "../Context/Context";
 
 const SingandLog = () => {
   const emailref = useRef();
@@ -14,12 +15,15 @@ const SingandLog = () => {
   const [Islogin, Setlogin] = useState(false);
   const [UserErrors, SetUserErrors] = useState(false);
 
+  const { Onlogin, IsUserlog } = Usecontextalltime();
+
   const Ontgoole = () => {
     Setlogin((prev) => !prev);
   };
 
   const Onsubmithnadler = async (e) => {
     e.preventDefault();
+
     let Useremail = emailref.current.value;
     let UserPassword = Password.current.value;
     let UserConfirmpassword = ConfirmPassword.current.value;
@@ -40,6 +44,8 @@ const SingandLog = () => {
           UserConfirmpassword
         );
         console.log(response);
+
+        Setlogin(true);
       } catch (error) {
         SetUserErrors(true);
         alert(error);
@@ -51,7 +57,7 @@ const SingandLog = () => {
           Useremail,
           UserConfirmpassword
         );
-        console.log(response);
+        Onlogin(response.user.uid);
       } catch (error) {
         SetUserErrors(true);
         alert(error);
@@ -62,6 +68,7 @@ const SingandLog = () => {
   return (
     <div className="fullpage">
       <div className="container">
+        <h1>{Islogin ? "LOG IN" : "SIGN IN "}</h1>
         <form onSubmit={Onsubmithnadler}>
           <input
             type="text"
@@ -84,6 +91,7 @@ const SingandLog = () => {
             style={UserErrors ? { color: "red" } : null}
             onChange={() => SetUserErrors(false)}
           ></input>
+
           <button>{Islogin ? "log in" : "Sign in "}</button>
         </form>
         <button onClick={Ontgoole}>

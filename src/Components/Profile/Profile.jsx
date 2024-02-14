@@ -21,9 +21,20 @@ function Profile() {
         returnSecureToken: true
       };
 
-      const response = await axios.post(
+      const response = await fetch(
         `https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyD3_cYhD3OyDKCdB6LmnFkL3lyEwtFjaoM`,
-        payload
+        {
+          method: "POST",
+          body: JSON.stringify({
+            idToken: tokens,
+            displayName: fullName,
+            photoUrl: profilePhotoUrl,
+            returnSecureToken: true
+          }),
+          headers: {
+            "Content-Type": "application/JSON"
+          }
+        }
       );
 
       console.log("Profile updated successfully:", response);

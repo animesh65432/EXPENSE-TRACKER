@@ -1,69 +1,67 @@
-/* Reset styles */
-body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
-}
-
-/* Form styles */
-form {
-  display: flex;
-  flex-direction: column;
-  width: 400px;
+.user-profile-form-container {
+  max-width: 400px;
   margin: 0 auto;
   padding: 20px;
-  border: 1px solid #ddd;
+  border: 1px solid #ccc;
   border-radius: 5px;
+  background-color: #f9f9f9;
 }
 
-h2 {
-  margin-bottom: 10px;
+.user-profile-form-container h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
 }
 
-p {
+.user-profile-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-profile-form div {
   margin-bottom: 15px;
 }
 
-label {
-  display: block;
+.user-profile-form label {
+  font-weight: bold;
   margin-bottom: 5px;
 }
 
-input,
-textarea {
-  width: 100%;
+.user-profile-form input[type="text"],
+.user-profile-form input[type="url"] {
   padding: 10px;
+  font-size: 16px;
   border: 1px solid #ccc;
-  border-radius: 3px;
-  margin-bottom: 15px;
+  border-radius: 5px;
 }
 
-textarea {
-  height: 100px;
-}
-
-button {
+.user-profile-form button {
   padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: #fff;
   border: none;
   border-radius: 5px;
-  background-color: #4caf50;
-  color: white;
   cursor: pointer;
 }
 
-button[type="button"] {
-  background-color: #ccc;
+.user-profile-form button:hover {
+  background-color: #0056b3;
 }
 
-button:hover {
-  opacity: 0.8;
+.alert {
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
 }
 
-/* Additional styles for specific elements (customize as needed) */
-.progress-bar {
-  /* Add styles for a progress bar here */
+.alert-danger {
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  color: #721c24;
 }
 
-.image-upload {
-  /* Add styles for image upload functionality here */
+.alert-success {
+  background-color: #d4edda;
+  border: 1px solid #c3e6cb;
+  color: #155724;
 }

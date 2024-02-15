@@ -1,68 +1,81 @@
-.fullpage {
+/* Styles for the login form wrapper */
+.auth {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #f0f0f0;
+  background-color: #f8f9fa; /* Light background color */
+  font-family: "Courier New", Courier, monospace;
 }
 
-.container {
-  width: 600px;
-  padding: 20px;
-  background-color: #fff;
+/* Styles for the form */
+.auth form {
+  background-color: #ffffff; /* White background color */
+  padding: 2rem;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  width: 350px; /* Set a fixed width for the form */
 }
 
-.container h1 {
+/* Styles for the form title */
+.auth h1 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
   text-align: center;
-  margin-bottom: 20px;
+  color: #333333; /* Dark text color */
 }
 
-.container form {
+/* Styles for form controls (labels and inputs) */
+.form-control {
+  margin-bottom: 1rem;
+}
+
+.form-control label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  color: #333333; /* Dark text color */
+}
+
+.form-control input {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ced4da; /* Light border color */
+  border-radius: 4px;
+}
+
+/* Styles for form actions (buttons and toggle) */
+.form-actions {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.container input,
-.container button {
-  margin-bottom: 10px;
-  width: calc(100% - 22px); /* Adjusted width */
-}
-
-.container input {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.container input.error {
-  border-color: red;
-}
-
-.container button {
-  padding: 10px 0;
-  background-color: #007bff;
-  color: #fff;
+.btn {
+  background-color: #007bff; /* Primary button color */
+  color: #ffffff; /* Button text color */
   border: none;
-  border-radius: 5px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
   cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
 }
 
-.container button:hover {
-  background-color: #0056b3;
+.btn:hover {
+  background-color: #0056b3; /* Darker shade on hover */
 }
 
-.container button:last-child {
-  background-color: #f0ad4e;
+.toggle {
+  background-color: transparent;
+  color: #007bff; /* Primary color for toggle */
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
 }
 
-.container button:last-child:hover {
-  background-color: #ee9f44;
-}
-
-.container button:last-child:hover {
-  background-color: #ddd;
-  color: #000;
-  border: 1px solid #999;
+.toggle:hover {
+  color: #0056b3; /* Darker shade on hover */
 }

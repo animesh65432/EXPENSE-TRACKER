@@ -1,74 +1,108 @@
-import React, { useState } from "react";
+import React, {
+  Fragment,
+  useRef,
+  useState,
+  useCallback,
+  useEffect
+} from "react";
 import "./Profile.css";
-import axios from "axios";
 import { Usecontextalltime } from "../Context/Context";
+import axios from "axios";
 
-function Profile() {
-  const [fullName, setFullName] = useState("");
-  const [profilePhotoUrl, setProfilePhotoUrl] = useState("");
-  const [Isloading, Setloading] = useState(false);
-
+const Profile = () => {
+  const fullNameRef = useRef();
+  const profilePicRef = useRef();
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState(false);
   const { tokens } = Usecontextalltime();
-  const handleSubmit = async (event) => {
-    Setloading(true);
-    event.preventDefault();
 
-    try {
-      const payload = {
-        idToken: tokens,
-        displayName: fullName,
-        photoUrl: profilePhotoUrl,
-        returnSecureToken: true
-      };
-
-      const response = await fetch(
-        `https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyD3_cYhD3OyDKCdB6LmnFkL3lyEwtFjaoM`,
+  const getProfileData = useCallback(() => {
+    axios
+      .post(
+        `https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyCeTJueOOOp9VIvedFWi7ZLOG_exHKBjq4`,
         {
-          method: "POST",
-          body: JSON.stringify({
-            idToken: tokens,
-            displayName: fullName,
-            photoUrl: profilePhotoUrl,
-            returnSecureToken: true
-          }),
-          headers: {
-            "Content-Type": "application/JSON"
-          }
+          idToken: tokens
         }
-      );
+      )
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
-      console.log("Profile updated successfully:", response);
-    } catch (error) {
-      console.error("Error updating profile:", error);
+  useEffect(() => {
+    console.log("hello");
+    getProfileData();
+  }, [getProfileData]);
+
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    const fullName = fullNameRef.current.value;
+    const profilePic = profilePicRef.current.value;
+
+    if (!fullName || !profilePic) {
+      setError("Please fill out all fields.");
+      return;
     }
-    Setloading(false);
+
+    axios
+      .post(
+        "https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyCeTJueOOOp9VIvedFWi7ZLOG_exHKBjq4",
+        {
+          idToken: tokens,
+          displayName: fullName,
+          photoUrl: profilePic,
+          returnSecureToken: true
+        }
+      )
+      .then((res) => {
+        console.log("you have made sucessfully call", res);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Your Profile</h2>
-      <button type="button">Cancel</button>
-      <br />
-      <label htmlFor="fullName">Full Name:</label>
-      <input
-        type="text"
-        id="fullName"
-        name="fullName"
-        value={fullName}
-        onChange={(e) => setFullName(e.target.value)}
-        required
-      />
-      <label htmlFor="profilePhotoUrl">Profile Photo URL:</label>
-      <input
-        type="url"
-        id="profilePhotoUrl"
-        name="profilePhotoUrl"
-        value={profilePhotoUrl}
-        onChange={(e) => setProfilePhotoUrl(e.target.value)}
-      />
-      <button type="submit">{Isloading ? "Loading" : "Update"}</button>
-    </form>
+    <Fragment>
+      <div className="user-profile-form-container">
+        <h1>Contact Details</h1>
+        <form onSubmit={submitHandler} className="user-profile-form">
+          <div>
+            <label htmlFor="fullName">Full Name</label>
+            <input
+              type="text"
+              placeholder="Enter your full name"
+              ref={fullNameRef}
+              required
+            />
+          </div>
+
+          <div>
+            <label htmlFor="profilePic">Profile Photo URL</label>
+            <input
+              type="url"
+              placeholder="Enter a valid profile photo URL"
+              ref={profilePicRef}
+              required
+            />
+          </div>
+
+          {error && <div className="alert alert-danger">{error}</div>}
+
+          {success && (
+            <div className="alert alert-success">
+              Profile updated successfully!
+            </div>
+          )}
+
+          <button type="submit">Update Profile</button>
+        </form>
+      </div>
+    </Fragment>
   );
-}
+};
 
 export default Profile;

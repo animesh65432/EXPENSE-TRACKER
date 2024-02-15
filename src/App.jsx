@@ -6,7 +6,8 @@ import Store from "./Components/Store/Store";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
-  const { Onlogin, IsUserlog } = Usecontextalltime();
+  const { IsUserlog } = Usecontextalltime();
+  console.log(IsUserlog);
   return (
     <>
       {IsUserlog ? (

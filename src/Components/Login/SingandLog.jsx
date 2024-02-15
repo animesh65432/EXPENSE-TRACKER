@@ -1,111 +1,127 @@
-import React, { useState } from "react";
-import { useRef } from "react";
-import { Auth } from "../../Auth/Auth";
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword
-} from "firebase/auth";
+import { useState, useRef, useContext, Fragment } from "react";
 import "./Singandlog.css";
 import { Usecontextalltime } from "../Context/Context";
 
 const SingandLog = () => {
-  const emailref = useRef();
-  const Password = useRef();
-  const ConfirmPassword = useRef();
-  const [Islogin, Setlogin] = useState(false);
-  const [UserErrors, SetUserErrors] = useState(false);
-  const [Loading, Setloading] = useState(false);
+  const emailInputRef = useRef();
+  const passwordInputRef = useRef();
+  const [isLogin, setIsLogin] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+  const [email, setEmail] = useState("");
+  const [passwordConfirmation, setPasswordConfirmation] = useState("");
+  const { Onlogin } = Usecontextalltime();
 
-  const { Onlogin, IsUserlog } = Usecontextalltime();
-
-  const Ontgoole = () => {
-    Setlogin((prev) => !prev);
+  const switchAuthModeHandler = () => {
+    setIsLogin((prevState) => !prevState);
+    setEmail("");
+    setPasswordConfirmation("");
   };
 
-  const Onsubmithnadler = async (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
-    Setloading(true);
-
-    let Useremail = emailref.current.value;
-    let UserPassword = Password.current.value;
-    if (IsUserlog) {
-      let UserConfirmpassword = ConfirmPassword.current.value;
+    const enteredEmail = emailInputRef.current.value;
+    const enteredPassword = passwordInputRef.current.value;
+    setEmail(enteredEmail);
+    setIsLoading(true);
+    let url;
+    if (isLogin) {
+      url =
+        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCeTJueOOOp9VIvedFWi7ZLOG_exHKBjq4";
+    } else {
+      url =
+        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCeTJueOOOp9VIvedFWi7ZLOG_exHKBjq4";
     }
-
-    if (IsUserlog && UserPassword !== UserConfirmpassword) {
-      Password.current.focus();
-      SetUserErrors(true);
+    if (!isLogin && enteredPassword !== passwordConfirmation) {
+      alert("Password and confirmation password do not match.");
+      setIsLoading(false);
       return;
-    } else {
-      SetUserErrors(false);
     }
 
-    if (!Islogin) {
-      try {
-        let response = await createUserWithEmailAndPassword(
-          Auth,
-          Useremail,
-          UserPassword
-        );
-        console.log(response);
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        body: JSON.stringify({
+          email: enteredEmail,
+          password: enteredPassword,
+          returnSecureToken: true
+        }),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      });
 
-        Setlogin(true);
-      } catch (error) {
-        SetUserErrors(true);
-        alert(error);
+      if (!response.ok) {
+        const data = await response.json();
+        let errorMessage = "Authentication failed";
+
+        if (data && data.error && data.error.message) {
+          errorMessage = data.error.message;
+        }
+
+        throw new Error(errorMessage);
       }
-    } else {
-      try {
-        let response = await signInWithEmailAndPassword(
-          Auth,
-          Useremail,
-          UserPassword
-        );
-        Onlogin(response.user.uid);
-      } catch (error) {
-        SetUserErrors(true);
-        alert(error);
+
+      const data = await response.json();
+      const token = data.idToken;
+      if (isLogin) {
+        Onlogin(token);
       }
+    } catch (err) {
+      alert(err.message);
+    } finally {
+      setIsLoading(false);
     }
-    Setloading(false);
   };
 
   return (
-    <div className="fullpage">
-      <div className="container">
-        <h1>{Islogin ? "LOG IN" : "SIGN UP"}</h1>
-        <form onSubmit={Onsubmithnadler}>
-          <input
-            type="text"
-            placeholder="Email"
-            ref={emailref}
-            style={UserErrors ? { color: "red" } : null}
-            onChange={() => SetUserErrors(false)}
-          ></input>
-          <input
-            type="password"
-            placeholder="Password"
-            ref={Password}
-            style={UserErrors ? { color: "red" } : null}
-            onChange={() => SetUserErrors(false)}
-          ></input>
-          {!Islogin && (
+    <Fragment>
+      <section className="auth">
+        <form onSubmit={submitHandler}>
+          <h1>{isLogin ? "Login" : "Sign Up"}</h1>
+          <div className="form-control">
+            <label htmlFor="email">Your Email</label>
+            <input type="email" id="email" required ref={emailInputRef} />
+          </div>
+          <div className="form-control">
+            <label htmlFor="password">Your Password</label>
             <input
               type="password"
-              placeholder="Confirm Password"
-              ref={ConfirmPassword}
-              style={UserErrors ? { color: "red" } : null}
-              onChange={() => SetUserErrors(false)}
-            ></input>
+              id="password"
+              required
+              ref={passwordInputRef}
+            />
+          </div>
+
+          {!isLogin && (
+            <div className="form-control">
+              <label htmlFor="passwordConfirmation">Confirm Password</label>
+              <input
+                type="password"
+                id="passwordConfirmation"
+                required
+                value={passwordConfirmation}
+                onChange={(e) => setPasswordConfirmation(e.target.value)}
+              />
+            </div>
           )}
-          <p>{Loading ? "Lodaing" : null}</p>
-          <button>{Islogin ? "Log in" : "Sign up"}</button>
+          <div className="form-actions">
+            {!isLoading ? (
+              <button className="btn">{isLogin ? "Login" : "Sign Up"}</button>
+            ) : (
+              <p>Loading...</p>
+            )}
+
+            <button
+              type="button"
+              className="btn toggle"
+              onClick={switchAuthModeHandler}
+            >
+              {isLogin ? "Create new account" : "Login with existing account"}
+            </button>
+          </div>
         </form>
-        <button onClick={Ontgoole}>
-          {Islogin ? "Create New Account" : "Have an Account? Log in"}
-        </button>
-      </div>
-    </div>
+      </section>
+    </Fragment>
   );
 };
 

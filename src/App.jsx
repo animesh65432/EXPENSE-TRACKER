@@ -1,5 +1,5 @@
-import "./App.css";
 import { Usecontextalltime } from "./Components/Context/Context";
+import Header from "./Components/Header/Header";
 import SingandLog from "./Components/Login/SingandLog";
 import Profile from "./Components/Profile/Profile";
 import Store from "./Components/Store/Store";
@@ -12,6 +12,7 @@ function App() {
     <>
       {IsUserlog ? (
         <BrowserRouter>
+          <Header />
           <Routes>
             <Route path="/" element={<Store />}></Route>
             <Route path="/Profile" element={<Profile />}></Route>

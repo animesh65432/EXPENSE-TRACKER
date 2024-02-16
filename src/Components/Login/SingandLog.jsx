@@ -1,5 +1,4 @@
 import { useState, useRef, useContext, Fragment } from "react";
-import "./Singandlog.css";
 import { Usecontextalltime } from "../Context/Context";
 
 const SingandLog = () => {

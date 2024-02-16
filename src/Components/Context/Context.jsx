@@ -14,11 +14,16 @@ const Context = ({ children }) => {
     localStorage.setItem("token", token);
   };
 
+  const Onlogout = () => {
+    Setokens("");
+  };
   const Onuseradd = (email) => {
     SetUserEmail(email);
   };
   return (
-    <con.Provider value={{ Onlogin, IsUserlog, tokens, UserEmail, Onuseradd }}>
+    <con.Provider
+      value={{ Onlogin, IsUserlog, tokens, UserEmail, Onuseradd, Onlogout }}
+    >
       {children}
     </con.Provider>
   );

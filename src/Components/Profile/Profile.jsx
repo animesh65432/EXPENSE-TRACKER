@@ -5,7 +5,6 @@ import React, {
   useCallback,
   useEffect
 } from "react";
-import "./Profile.css";
 import { Usecontextalltime } from "../Context/Context";
 import axios from "axios";
 import Gettheuseremail from "../../Customhooks/Gettheuseremail";

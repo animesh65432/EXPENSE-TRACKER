@@ -6,10 +6,12 @@ import Profile from "./Components/Profile/Profile";
 import Store from "./Components/Store/Store";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import SetPassword from "./Password/SetPassword";
+import AddExpenses from "./Components/Expense/AddExpenses";
 
 function App() {
   const { IsUserlog } = Usecontextalltime();
   console.log(IsUserlog);
+
   return (
     <>
       {IsUserlog ? (
@@ -18,6 +20,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Store />}></Route>
             <Route path="/Profile" element={<Profile />}></Route>
+            <Route path="/Expenses" element={<AddExpenses />}></Route>
           </Routes>
           <Footer />
         </BrowserRouter>

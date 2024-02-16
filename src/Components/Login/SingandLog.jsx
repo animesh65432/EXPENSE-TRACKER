@@ -9,7 +9,7 @@ const SingandLog = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
-  const { Onlogin, Onuseradd } = Usecontextalltime();
+  const { Onlogin } = Usecontextalltime();
 
   const switchAuthModeHandler = () => {
     setIsLogin((prevState) => !prevState);
@@ -65,7 +65,6 @@ const SingandLog = () => {
       const token = data.idToken;
       if (isLogin) {
         Onlogin(token);
-        Onuseradd(enteredEmail);
       }
     } catch (err) {
       alert(err.message);

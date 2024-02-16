@@ -5,7 +5,6 @@ const con = React.createContext();
 const Context = ({ children }) => {
   const intialstate = localStorage.getItem("token");
   const [tokens, Setokens] = useState(intialstate);
-  const [UserEmail, SetUserEmail] = useState("");
 
   const IsUserlog = !!tokens;
 
@@ -16,14 +15,11 @@ const Context = ({ children }) => {
 
   const Onlogout = () => {
     Setokens("");
+    localStorage.removeItem("token");
   };
-  const Onuseradd = (email) => {
-    SetUserEmail(email);
-  };
+
   return (
-    <con.Provider
-      value={{ Onlogin, IsUserlog, tokens, UserEmail, Onuseradd, Onlogout }}
-    >
+    <con.Provider value={{ Onlogin, IsUserlog, tokens, Onlogout }}>
       {children}
     </con.Provider>
   );

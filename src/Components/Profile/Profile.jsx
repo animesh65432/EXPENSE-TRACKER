@@ -8,6 +8,7 @@ import React, {
 import "./Profile.css";
 import { Usecontextalltime } from "../Context/Context";
 import axios from "axios";
+import Gettheuseremail from "../../Customhooks/Gettheuseremail";
 
 const Profile = () => {
   const fullNameRef = useRef();
@@ -15,12 +16,30 @@ const Profile = () => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
   const { tokens } = Usecontextalltime();
+  const [email, setEmail] = useState("");
+
+  useEffect(() => {
+    const fetchEmail = async () => {
+      try {
+        const email = await Gettheuseremail({
+          requestType: "VERIFY_EMAIL",
+          idToken: tokens
+        });
+        setEmail(email);
+      } catch (error) {
+        console.error("Error fetching user email:", error);
+      }
+    };
+
+    fetchEmail();
+  }, [tokens]);
 
   const getProfileData = useCallback(() => {
     axios
       .post(
         `https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyCeTJueOOOp9VIvedFWi7ZLOG_exHKBjq4`,
         {
+          requestType: "VERIFY_EMAIL",
           idToken: tokens
         }
       )
@@ -30,12 +49,7 @@ const Profile = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
-
-  useEffect(() => {
-    console.log("hello");
-    getProfileData();
-  }, [getProfileData]);
+  }, [tokens]);
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -58,7 +72,7 @@ const Profile = () => {
         }
       )
       .then((res) => {
-        console.log("you have made sucessfully call", res);
+        console.log("you have made successfully call", res);
       })
       .catch((error) => {
         console.log(error);
@@ -69,6 +83,7 @@ const Profile = () => {
     <Fragment>
       <div className="user-profile-form-container">
         <h1>Contact Details</h1>
+        <p>User Email : {email}</p>
         <form onSubmit={submitHandler} className="user-profile-form">
           <div>
             <label htmlFor="fullName">Full Name</label>

@@ -1,5 +1,6 @@
 import { useState, useRef, useContext, Fragment } from "react";
 import { Usecontextalltime } from "../Context/Context";
+import { Link } from "react-router-dom";
 
 const SingandLog = () => {
   const emailInputRef = useRef();
@@ -75,9 +76,11 @@ const SingandLog = () => {
 
   return (
     <Fragment>
-      <section className="auth">
-        <form onSubmit={submitHandler}>
+      <div className="auth">
+        <div id="title">
           <h1>{isLogin ? "Login" : "Sign Up"}</h1>
+        </div>
+        <form onSubmit={submitHandler} className="loginfrom">
           <div className="form-control">
             <label htmlFor="email">Your Email</label>
             <input type="email" id="email" required ref={emailInputRef} />
@@ -118,9 +121,12 @@ const SingandLog = () => {
             >
               {isLogin ? "Create new account" : "Login with existing account"}
             </button>
+            <button id="reset-buttom">
+              <Link to="/Reset">Reset Pssword</Link>
+            </button>
           </div>
         </form>
-      </section>
+      </div>
     </Fragment>
   );
 };

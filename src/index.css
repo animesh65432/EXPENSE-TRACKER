@@ -1,0 +1,210 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Courier New", Courier, monospace;
+}
+a {
+  color: #f7f7f7;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+.auth {
+  background-color: #f7f7f7;
+  height: 400px;
+  width: 400px;
+  margin: 10% auto; /* Center the form horizontally */
+  display: flex;
+  flex-direction: column; /* Align items in a column */
+  align-items: center; /* Center items horizontally */
+  justify-content: center; /* Center items vertically */
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.auth #title {
+  text-align: center; /* Center text horizontally */
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.auth .loginform {
+  width: 80%;
+}
+
+.auth .form-control {
+  margin-bottom: 20px;
+}
+
+.auth .form-control label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 16px;
+}
+
+.auth .form-control input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.auth .form-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.auth .form-actions .btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #33a5ff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.auth .form-actions .btn:hover {
+  background-color: #1e90ff;
+}
+
+.Header {
+  height: 60px;
+  width: 100%;
+  background-color: rgb(50, 192, 218);
+  display: flex;
+  justify-content: flex-end; /* Change to flex-end */
+  align-items: center;
+}
+
+.Header button {
+  font-size: 25px;
+  border: 2px solid black;
+  background-color: #1e90ff;
+  border-radius: 6px;
+}
+
+.footerbox {
+  height: 50px;
+  width: 100%;
+  background-color: #1e90ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
+.storecontainer {
+  height: 650px;
+  display: flex;
+  justify-content: flex-end; /* Change to flex-end */
+}
+
+.welcome-profile {
+  background-color: #f7dfc3; /* Change to a goop color */
+  height: 90px;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between; /* Adjust alignment */
+  align-items: center; /* Adjust alignment */
+  padding: 0 20px; /* Add padding */
+}
+
+.welcome-profile button {
+  background-color: #1e90ff;
+  border-radius: 6px;
+  font-size: 20px;
+  padding: 10px 20px; /* Add padding */
+}
+
+.profile {
+  height: 650px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-profile {
+  height: auto; /* Change to auto */
+  max-width: 500px; /* Adjust maximum width */
+  background-color: #fff; /* Add background color */
+  border: 2px solid black;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.user-profile label,
+.user-profile p {
+  font-size: 16px; /* Adjust font size */
+  margin-bottom: 10px; /* Add spacing */
+}
+
+.user-profile input {
+  width: 100%; /* Adjust width */
+  padding: 10px; /* Add padding */
+  font-size: 16px; /* Adjust font size */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px; /* Add spacing */
+}
+
+.user-profile button {
+  width: 100%; /* Adjust width */
+  padding: 10px; /* Add padding */
+  font-size: 16px; /* Adjust font size */
+  color: #fff;
+  background-color: #33a5ff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Add transition */
+}
+
+.user-profile button:hover {
+  background-color: #1e90ff; /* Change color on hover */
+}
+.resetpassword {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Adjust the height as needed */
+}
+
+.resetpassword > div {
+  width: 300px; /* Adjust the width as needed */
+}
+
+.resetpassword input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.resetpassword button {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #33a5ff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.resetpassword button:hover {
+  background-color: #1e90ff;
+}
+#reset-buttom {
+  background-color: #1e90ff;
+}

@@ -79,8 +79,8 @@ const Profile = () => {
   };
 
   return (
-    <Fragment>
-      <div className="user-profile-form-container">
+    <div className="profile">
+      <div className="user-profile">
         <h1>Contact Details</h1>
         <p>User Email : {email}</p>
         <form onSubmit={submitHandler} className="user-profile-form">
@@ -115,7 +115,7 @@ const Profile = () => {
           <button type="submit">Update Profile</button>
         </form>
       </div>
-    </Fragment>
+    </div>
   );
 };
 

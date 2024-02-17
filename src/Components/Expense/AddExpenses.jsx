@@ -1,62 +1,70 @@
 import React, { useRef } from "react";
-import "./expense.css";
 import axios from "axios";
+import "./expense.css";
+import { Link } from "react-router-dom";
 
 const AddExpenses = () => {
   const Moneyref = useRef();
   const Descriptionref = useRef();
-  const Catetgoryref = useRef();
+  const Categoryref = useRef();
   const Dateref = useRef();
 
-  const OnsumbitAddexpenses = async () => {
-    let Usermoney = Moneyref.current.value;
-    let Description = Descriptionref.current.value;
-    let Category = Catetgoryref.current.value;
-    let Date = Dateref.current.value;
+  const onSubmitAddExpenses = async () => {
+    const Usermoney = Moneyref.current.value;
+    const Description = Descriptionref.current.value;
+    const Category = Categoryref.current.value;
+    const Date = Dateref.current.value;
 
     try {
-      let reponse = await axios.post(
+      await axios.post(
         `https://sgarpner-project-default-rtdb.firebaseio.com/Save.json`,
         {
           money: Usermoney,
-          Description: Description,
-          Category: Category,
-          Date: Date
+          description: Description,
+          category: Category,
+          date: Date
         }
       );
-      console.log(reponse);
+      alert("Expense added successfully");
     } catch (err) {
-      console.log(err);
+      console.error("Error adding expense:", err);
+      alert("Something went wrong");
     }
   };
+
   return (
-    <div id="Container">
-      <div id="addExpensesContainer" className="expenses-container">
-        <div className="input-group">
-          <label htmlFor="spentMoney">Spent Money</label>
-          <input type="text" id="spentMoney" ref={Moneyref} />
+    <>
+      <div id="Container">
+        <div id="addExpensesContainer" className="expenses-container">
+          <div className="input-group">
+            <label htmlFor="spentMoney">Spent Money</label>
+            <input type="text" id="spentMoney" ref={Moneyref} required />
+          </div>
+          <div className="input-group">
+            <label htmlFor="description">Description</label>
+            <input type="text" id="description" ref={Descriptionref} required />
+          </div>
+          <div className="input-group">
+            <label htmlFor="category">Category</label>
+            <select id="category" ref={Categoryref} required>
+              <option value="Food">Food</option>
+              <option value="Transportation">Transportation</option>
+              <option value="Utilities">Utilities</option>
+              <option value="Entertainment">Entertainment</option>
+              <option value="Others">Others</option>
+            </select>
+          </div>
+          <div className="input-group">
+            <label htmlFor="date">Date</label>
+            <input type="date" id="date" ref={Dateref} required />
+          </div>
+          <button onClick={onSubmitAddExpenses}>Add Expenses</button>
         </div>
-        <div className="input-group">
-          <label htmlFor="description">Description</label>
-          <input type="text" id="description" ref={Descriptionref} />
-        </div>
-        <div className="input-group">
-          <label htmlFor="category">Category</label>
-          <select id="category" ref={Catetgoryref}>
-            <option value="Food">Food</option>
-            <option value="Transportation">Transportation</option>
-            <option value="Utilities">Utilities</option>
-            <option value="Entertainment">Entertainment</option>
-            <option value="Others">Others</option>
-          </select>
-        </div>
-        <div className="input-group">
-          <label htmlFor="date">Date</label>
-          <input type="date" id="date" ref={Dateref} />
-        </div>
-        <button onClick={OnsumbitAddexpenses}>Add Expenses</button>
+        <button className="expensebuttonshow">
+          <Link to="/Expenses">Check it out Expenses</Link>
+        </button>
       </div>
-    </div>
+    </>
   );
 };
 

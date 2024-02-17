@@ -24,7 +24,7 @@ const Header = () => {
         <div>
           {IsUserlog && (
             <button>
-              <Link to="/Expenses">Add Expenses</Link>
+              <Link to="/AddExpenses">Add Expenses</Link>
             </button>
           )}
         </div>

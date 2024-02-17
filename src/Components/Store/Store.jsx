@@ -7,9 +7,9 @@ function Store() {
       <div className="welcome-profile">
         <h3 className="title">Welcome to Expense Tracker!!!</h3>
         <p className="message">Your profile is incomplete. Complete now!</p>
-        <button className="complete-button">
+        <h3 className="c-profile">
           <Link to="/Profile">Complete Profile</Link>
-        </button>
+        </h3>
       </div>
     </div>
   );

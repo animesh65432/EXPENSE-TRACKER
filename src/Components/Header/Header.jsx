@@ -16,22 +16,24 @@ const Header = () => {
       <div className="Header">
         <div>
           {IsUserlog && (
-            <button>
+            <h3>
               <Link to="/">Home</Link>
-            </button>
+            </h3>
           )}
         </div>
         <div>
           {IsUserlog && (
-            <button>
-              <Link to="/AddExpenses">Add Expenses</Link>
-            </button>
+            <h3>
+              <Link to="/AddExpenses">Add-Expenses</Link>
+            </h3>
           )}
         </div>
 
-        <div className="log">
-          {IsUserlog && <button onClick={OnLogOutButtom}>Log Out</button>}
-        </div>
+        {IsUserlog && (
+          <button onClick={OnLogOutButtom} id="logout">
+            Log Out
+          </button>
+        )}
       </div>
     </>
   );

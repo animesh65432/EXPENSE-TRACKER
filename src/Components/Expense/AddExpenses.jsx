@@ -14,6 +14,10 @@ const AddExpenses = () => {
     const Description = Descriptionref.current.value;
     const Category = Categoryref.current.value;
     const Date = Dateref.current.value;
+    if (Usermoney == "" || Description == "" || Category == "" || Date == "") {
+      alert("PLEASE PUT INFORMATIO CORRECTLY");
+      return;
+    }
 
     try {
       await axios.post(
@@ -60,9 +64,9 @@ const AddExpenses = () => {
           </div>
           <button onClick={onSubmitAddExpenses}>Add Expenses</button>
         </div>
-        <button className="expensebuttonshow">
+        <h3 className="expensebuttonshow">
           <Link to="/Expenses">Check it out Expenses</Link>
-        </button>
+        </h3>
       </div>
     </>
   );

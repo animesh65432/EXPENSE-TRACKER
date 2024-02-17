@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react";
-import "./expense.css";
 import axios from "axios";
 import { Expenses } from "../../assets/images";
+import ExpenseEdit from "./ExpneseEdit";
 
 const Expense = () => {
   const [data, setData] = useState([]);
-  console.log(data);
+  const [editItemId, setEditItemId] = useState(null);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const fetchData = async () => {
     try {
@@ -22,17 +26,30 @@ const Expense = () => {
     }
   };
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+  const handleUpdate = (id, money, description, category, date) => {
+    const updatedData = data.map((item) => {
+      if (item.id === id) {
+        return {
+          ...item,
+          money,
+          description,
+          category,
+          date
+        };
+      }
+      return item;
+    });
+    setData(updatedData);
+    setEditItemId(null);
+  };
 
-  const deletetheitems = async (id) => {
+  const handleDelete = async (id) => {
     try {
-      let response = await axios.delete(
+      await axios.delete(
         `https://sgarpner-project-default-rtdb.firebaseio.com/Save/${id}.json`
       );
-      const filterarray = data.filter((obj) => obj.id !== id);
-      setData(filterarray);
+      const filteredData = data.filter((item) => item.id !== id);
+      setData(filteredData);
     } catch (error) {
       console.log(error);
     }
@@ -54,20 +71,36 @@ const Expense = () => {
                 <div className="expense-value">{expense.category}</div>
                 <div className="expense-label">Date:</div>
                 <div className="expense-value">{expense.date}</div>
-                <button onClick={() => deletetheitems(expense.id)}>
+                <button
+                  onClick={() => handleDelete(expense.id)}
+                  className="deleteexpenses"
+                >
                   Delete
                 </button>
-                <button>Edit</button>
+                {editItemId === expense.id ? (
+                  <ExpenseEdit
+                    {...expense}
+                    onUpdate={handleUpdate}
+                    onCancel={() => setEditItemId(null)}
+                  />
+                ) : (
+                  <button
+                    onClick={() => setEditItemId(expense.id)}
+                    className="editbutton"
+                  >
+                    Edit
+                  </button>
+                )}
               </div>
             </div>
           ))
         ) : (
           <div id="emptybox">
             <div>
-              <h4>No Expensese Items are There</h4>
+              <h4>No Expense Items are There</h4>
             </div>
             <div>
-              <img src={Expenses}></img>
+              <img src={Expenses} alt="No Expenses" />
             </div>
           </div>
         )}

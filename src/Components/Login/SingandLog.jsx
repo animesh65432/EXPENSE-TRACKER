@@ -1,6 +1,7 @@
 import { useState, useRef, useContext, Fragment } from "react";
-import { Usecontextalltime } from "../Context/Context";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { OnUserAdd, OnUserDelete } from "../../Reduex/Slices/AuthReducer";
 
 const SingandLog = () => {
   const emailInputRef = useRef();
@@ -9,7 +10,7 @@ const SingandLog = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
-  const { Onlogin } = Usecontextalltime();
+  const dispatch = useDispatch();
 
   const switchAuthModeHandler = () => {
     setIsLogin((prevState) => !prevState);
@@ -64,7 +65,7 @@ const SingandLog = () => {
       const data = await response.json();
       const token = data.idToken;
       if (isLogin) {
-        Onlogin(token);
+        dispatch(OnUserAdd(token));
       }
     } catch (err) {
       alert(err.message);

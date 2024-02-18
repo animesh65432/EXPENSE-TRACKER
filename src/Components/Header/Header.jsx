@@ -1,13 +1,16 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Usecontextalltime } from "../Context/Context";
+import { useDispatch, useSelector } from "react-redux";
+import { OnUserDelete } from "../../Reduex/Slices/AuthReducer";
 
 const Header = () => {
-  const { Onlogout, IsUserlog } = Usecontextalltime();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  let value = useSelector((state) => state.Auth.tokens);
+  let IsUserlog = !!value;
 
   const OnLogOutButtom = () => {
-    Onlogout();
+    dispatch(OnUserDelete());
     navigate("/");
   };
 

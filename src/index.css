@@ -253,3 +253,7 @@ body {
 .expensebuttonshow a {
   color: #e40808;
 }
+#premeiun-buttom {
+  width: 120px;
+  margin-left: 90%;
+}

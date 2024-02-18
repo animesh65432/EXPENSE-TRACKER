@@ -2,10 +2,13 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Expenses } from "../../assets/images";
 import ExpenseEdit from "./ExpneseEdit";
+import { useDispatch, useSelector } from "react-redux";
 
 const Expense = () => {
   const [data, setData] = useState([]);
   const [editItemId, setEditItemId] = useState(null);
+  const dispatch = useDispatch();
+  let TotalExpenses = useSelector((state) => state.expense.totalexpense);
 
   useEffect(() => {
     fetchData();
@@ -55,9 +58,12 @@ const Expense = () => {
     }
   };
 
+  useEffect(() => {}, [data]);
+
   return (
-    <>
+    <div>
       <h3 id="expenses-title">Expenses</h3>
+
       <div className="expense-container">
         {data.length > 0 ? (
           data.map((expense) => (
@@ -105,7 +111,7 @@ const Expense = () => {
           </div>
         )}
       </div>
-    </>
+    </div>
   );
 };
 

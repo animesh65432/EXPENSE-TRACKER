@@ -3,15 +3,16 @@ import Footer from "./Components/Footer/Footer";
 import Header from "./Components/Header/Header";
 import SingandLog from "./Components/Login/SingandLog";
 import Profile from "./Components/Profile/Profile";
-import Store from "./Components/Store/Store";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import SetPassword from "./Password/SetPassword";
 import AddExpenses from "./Components/Expense/AddExpenses";
 import Expense from "./Components/Expense/Expense";
+import { useSelector } from "react-redux";
+import Store from "./Components/Stroe/Store";
 
 function App() {
-  const { IsUserlog } = Usecontextalltime();
-  console.log(IsUserlog);
+  let value = useSelector((state) => state.Auth.tokens);
+  const IsUserlog = !!value;
 
   return (
     <>

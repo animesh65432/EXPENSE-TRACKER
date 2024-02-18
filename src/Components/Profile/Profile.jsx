@@ -5,17 +5,17 @@ import React, {
   useCallback,
   useEffect
 } from "react";
-import { Usecontextalltime } from "../Context/Context";
 import axios from "axios";
 import Gettheuseremail from "../../Customhooks/Gettheuseremail";
+import { useSelector } from "react-redux";
 
 const Profile = () => {
   const fullNameRef = useRef();
   const profilePicRef = useRef();
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
-  const { tokens } = Usecontextalltime();
   const [email, setEmail] = useState("");
+  const tokens = useSelector((state) => state.Auth.tokens);
 
   useEffect(() => {
     const fetchEmail = async () => {

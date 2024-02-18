@@ -23,7 +23,7 @@ const AddExpenses = () => {
       await axios.post(
         `https://sgarpner-project-default-rtdb.firebaseio.com/Save.json`,
         {
-          money: Usermoney,
+          money: Number(Usermoney),
           description: Description,
           category: Category,
           date: Date

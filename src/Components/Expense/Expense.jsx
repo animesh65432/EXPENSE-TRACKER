@@ -2,16 +2,16 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Expenses } from "../../assets/images";
 import ExpenseEdit from "./ExpneseEdit";
-import { useDispatch, useSelector } from "react-redux";
-
+import { updatethearray } from "../../Reduex/Slices/Expenses";
+import { useDispatch } from "react-redux";
 const Expense = () => {
   const [data, setData] = useState([]);
   const [editItemId, setEditItemId] = useState(null);
   const dispatch = useDispatch();
-  let TotalExpenses = useSelector((state) => state.expense.totalexpense);
 
   useEffect(() => {
     fetchData();
+    console.log("we are feching data");
   }, []);
 
   const fetchData = async () => {
@@ -24,6 +24,7 @@ const Expense = () => {
         ...response.data[id]
       }));
       setData(dataArray);
+      dispatch(updatethearray(dataArray));
     } catch (error) {
       console.log("Error fetching data:", error);
     }
@@ -43,27 +44,32 @@ const Expense = () => {
       return item;
     });
     setData(updatedData);
+    dispatch(updatethearray(updatedData));
     setEditItemId(null);
   };
 
-  const handleDelete = async (id) => {
+  const handleDelete = async (id, money) => {
     try {
       await axios.delete(
         `https://sgarpner-project-default-rtdb.firebaseio.com/Save/${id}.json`
       );
       const filteredData = data.filter((item) => item.id !== id);
       setData(filteredData);
+      dispatch(updatethearray(filteredData));
     } catch (error) {
       console.log(error);
     }
   };
 
-  useEffect(() => {}, [data]);
+  const totalAmount = data.reduce(
+    (total, expense) => total + Number(expense.money),
+    0
+  );
 
   return (
-    <div>
+    <div id="expenses-container">
       <h3 id="expenses-title">Expenses</h3>
-
+      <p>Total Amount: {totalAmount}</p>
       <div className="expense-container">
         {data.length > 0 ? (
           data.map((expense) => (
@@ -78,7 +84,7 @@ const Expense = () => {
                 <div className="expense-label">Date:</div>
                 <div className="expense-value">{expense.date}</div>
                 <button
-                  onClick={() => handleDelete(expense.id)}
+                  onClick={() => handleDelete(expense.id, expense.money)}
                   className="deleteexpenses"
                 >
                   Delete

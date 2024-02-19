@@ -109,7 +109,9 @@ const SingandLog = () => {
           )}
           <div className="form-actions">
             {!isLoading ? (
-              <button className="btn">{isLogin ? "Login" : "Sign Up"}</button>
+              <button className="btn" id="buttom-of-login">
+                {isLogin ? "Login" : "Sign Up"}
+              </button>
             ) : (
               <p>Loading...</p>
             )}
@@ -118,6 +120,7 @@ const SingandLog = () => {
               type="button"
               className="btn toggle"
               onClick={switchAuthModeHandler}
+              id="Craete-new"
             >
               {isLogin ? "Create new account" : "Login with existing account"}
             </button>

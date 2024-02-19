@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 const ExpenseEdit = ({
@@ -35,7 +35,7 @@ const ExpenseEdit = ({
   return (
     <div>
       <input
-        type="text"
+        type="number"
         value={money}
         onChange={(e) => setMoney(e.target.value)}
       />

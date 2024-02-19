@@ -1,4 +1,3 @@
-import { Usecontextalltime } from "./Components/Context/Context";
 import Footer from "./Components/Footer/Footer";
 import Header from "./Components/Header/Header";
 import SingandLog from "./Components/Login/SingandLog";
@@ -12,6 +11,8 @@ import Store from "./Components/Stroe/Store";
 
 function App() {
   let value = useSelector((state) => state.Auth.tokens);
+  let theme = useSelector((state) => state.toggole.value);
+  console.log(theme);
   const IsUserlog = !!value;
 
   return (
@@ -19,13 +20,15 @@ function App() {
       {IsUserlog ? (
         <BrowserRouter>
           <Header />
-          <Routes>
-            <Route path="/" element={<Store />}></Route>
-            <Route path="/Profile" element={<Profile />}></Route>
-            <Route path="/AddExpenses" element={<AddExpenses />}></Route>
-            <Route path="/Expenses" element={<Expense />}></Route>
-          </Routes>
-          <Footer />
+          <div id={`${theme}`}>
+            <Routes>
+              <Route path="/" element={<Store />}></Route>
+              <Route path="/Profile" element={<Profile />}></Route>
+              <Route path="/AddExpenses" element={<AddExpenses />}></Route>
+              <Route path="/Expenses" element={<Expense />}></Route>
+            </Routes>
+            <Footer />
+          </div>
         </BrowserRouter>
       ) : (
         <>
@@ -35,6 +38,7 @@ function App() {
               <Route path="/" element={<SingandLog />}></Route>
               <Route path="/Reset" element={<SetPassword />}></Route>
             </Routes>
+
             <Footer />
           </BrowserRouter>
         </>

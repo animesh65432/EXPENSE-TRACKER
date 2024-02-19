@@ -14,7 +14,7 @@ const AddExpenses = () => {
     const Description = Descriptionref.current.value;
     const Category = Categoryref.current.value;
     const Date = Dateref.current.value;
-    if (Usermoney == "" || Description == "" || Category == "" || Date == "") {
+    if (Usermoney > 0 && Description == "" && Category == "" && Date == "") {
       alert("PLEASE PUT INFORMATIO CORRECTLY");
       return;
     }
@@ -23,12 +23,13 @@ const AddExpenses = () => {
       await axios.post(
         `https://sgarpner-project-default-rtdb.firebaseio.com/Save.json`,
         {
-          money: Number(Usermoney),
+          money: Usermoney,
           description: Description,
           category: Category,
           date: Date
         }
       );
+
       alert("Expense added successfully");
     } catch (err) {
       console.error("Error adding expense:", err);
@@ -42,7 +43,7 @@ const AddExpenses = () => {
         <div id="addExpensesContainer" className="expenses-container">
           <div className="input-group">
             <label htmlFor="spentMoney">Spent Money</label>
-            <input type="text" id="spentMoney" ref={Moneyref} required />
+            <input type="number" id="spentMoney" ref={Moneyref} required />
           </div>
           <div className="input-group">
             <label htmlFor="description">Description</label>

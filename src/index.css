@@ -99,13 +99,13 @@ body {
 }
 
 .Header button:hover {
-  background-color: #003d7f; /* Darker blue on hover */
+  background-color: #003d7f;
 }
 
 .footerbox {
   height: 50px;
   width: 100%;
-  background-color: #0056b3; /* Darker blue */
+  background-color: #333;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -220,7 +220,7 @@ body {
 }
 
 .resetpassword button:hover {
-  background-color: #0056b3;
+  background-color: #e00e12;
 }
 
 .Header {
@@ -229,8 +229,7 @@ body {
 .Header div a {
   justify-content: end;
   text-decoration: none;
-  border: 2px solid black;
-  background-color: brown;
+  background-color: #ff4d4d;
   border-radius: 4px;
 }
 #logout {
@@ -254,6 +253,83 @@ body {
   color: #e40808;
 }
 #premeiun-buttom {
-  width: 120px;
-  margin-left: 90%;
+  width: 90px;
+  height: 60px;
+  margin-right: 40%;
+  background-color: cornflowerblue;
+}
+.swicth {
+}
+.Header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #333;
+  color: #fff;
+}
+
+.switch {
+  display: flex;
+  align-items: center;
+}
+
+.switch label {
+  margin-right: 10px;
+}
+
+.Header h3 {
+  margin: 0;
+}
+
+.Header a {
+  color: #fff;
+  text-decoration: none;
+  margin-right: 20px;
+}
+
+#logout {
+  background-color: #ff4d4d;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#logout:hover {
+  background-color: #cc0000;
+}
+.footerbox a {
+  text-decoration: none;
+  color: #ccc;
+}
+.auth button {
+  background-color: #e85959;
+  color: #fff;
+}
+#buttom-of-login {
+  background-color: #e85959;
+}
+#Craete-new {
+  background-color: #e85959;
+}
+.resetpassword button {
+  background-color: #e85959;
+}
+#Container button {
+  background-color: #e85959;
+}
+#expenses-container button {
+  background-color: #e85959;
+}
+#premeiun-buttom {
+  background-color: #e85959;
+}
+#black {
+  background-color: #0e0d0d;
+  color: #f7f7f7;
+}
+.welcome-profile {
+  background-color: #e85959;
 }

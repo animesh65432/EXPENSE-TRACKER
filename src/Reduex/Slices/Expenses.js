@@ -12,7 +12,6 @@ const Expenses = createSlice({
     },
     OnuserOnClick: (state, action) => {
       state.flag = !state.flag;
-      console.log(state.flag);
     }
   }
 });

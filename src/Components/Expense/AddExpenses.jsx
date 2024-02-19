@@ -66,7 +66,7 @@ const AddExpenses = () => {
           <button onClick={onSubmitAddExpenses}>Add Expenses</button>
         </div>
         <h3 className="expensebuttonshow">
-          <Link to="/Expenses">Check it out Expenses</Link>
+          <Link to="/">Check it out Expenses</Link>
         </h3>
       </div>
     </>

@@ -118,7 +118,7 @@ const SingandLog = () => {
 
             <button
               type="button"
-              className="btn toggle"
+              className="btntoggle"
               onClick={switchAuthModeHandler}
               id="Craete-new"
             >

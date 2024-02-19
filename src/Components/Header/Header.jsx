@@ -20,7 +20,7 @@ const Header = () => {
   return (
     <>
       <div className="Header">
-        {Flag && (
+        {IsUserlog && Flag && (
           <div className="switch">
             <label htmlFor="darkorlight">{theme}</label>
             <ReactSwitch

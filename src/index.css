@@ -1,270 +1,18 @@
-* {
+/* App.css */
+
+/* General styles */
+body {
+  font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  font-family: "Courier New", Courier, monospace;
 }
 
-a {
-  color: #333; /* Dark gray for links */
-}
-
-html,
-body {
-  height: 100%;
-  width: 100%;
-}
-
-.auth {
-  background-color: #f7f7f7;
-  height: 400px;
-  width: 400px;
-  margin: 10% auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid #ccc;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.auth #title {
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 24px;
-}
-
-.auth .loginform {
-  width: 80%;
-}
-
-.auth .form-control {
-  margin-bottom: 20px;
-}
-
-.auth .form-control label {
-  display: block;
-  margin-bottom: 5px;
-  font-size: 16px;
-}
-
-.auth .form-control input {
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.auth .form-actions {
-  display: flex;
-  justify-content: space-between;
-}
-
-.auth .form-actions .btn {
-  padding: 10px 20px;
-  font-size: 16px;
-  color: #fff;
-  background-color: #007bff; /* Blue */
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.auth .form-actions .btn:hover {
-  background-color: #0056b3; /* Darker blue on hover */
-}
-
-.Header {
-  height: 60px;
-  width: 100%;
-  background-color: #007bff; /* Blue */
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-}
-.Header a {
-  color: aliceblue;
-}
-
-.Header button {
-  font-size: 18px;
-  border: 2px solid #333; /* Dark gray border */
-  background-color: #0056b3; /* Darker blue */
-  border-radius: 6px;
-  padding: 8px 15px; /* Adjusted padding */
-  margin-right: 20px; /* Added margin */
-  color: #fff;
-}
-
-.Header button:hover {
-  background-color: #003d7f;
-}
-
-.footerbox {
-  height: 50px;
-  width: 100%;
-  background-color: #333;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-}
-
-.storecontainer {
-  height: 650px;
-  display: flex;
-  justify-content: flex-end;
-}
-
-.welcome-profile {
-  background-color: #f7dfc3; /* Light beige */
-  height: 90px;
-  border-radius: 6px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 20px;
-}
-
-.welcome-profile button {
-  background-color: #007bff; /* Blue */
-  border-radius: 6px;
-  font-size: 18px;
-  padding: 10px 20px;
-  color: #fff;
-}
-
-.welcome-profile button:hover {
-  background-color: #0056b3; /* Darker blue on hover */
-}
-
-.profile {
-  height: 650px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.user-profile {
-  height: auto;
-  max-width: 500px;
-  background-color: #fff;
-  border: 2px solid #333; /* Dark gray border */
-  border-radius: 10px;
-  padding: 20px;
-}
-
-.user-profile label,
-.user-profile p {
-  font-size: 16px;
-  margin-bottom: 10px;
-}
-
-.user-profile input {
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  margin-bottom: 10px;
-}
-
-.user-profile button {
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  color: #fff;
-  background-color: #007bff; /* Blue */
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.user-profile button:hover {
-  background-color: #0056b3; /* Darker blue on hover */
-}
-
-.resetpassword {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
-.resetpassword > div {
-  width: 300px;
-}
-
-.resetpassword input {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 15px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.resetpassword button {
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  color: #fff;
-  background-color: #007bff; /* Blue */
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.resetpassword button:hover {
-  background-color: #e00e12;
-}
-
-.Header {
-  margin-right: 30px;
-}
-.Header div a {
-  justify-content: end;
-  text-decoration: none;
-  background-color: #ff4d4d;
-  border-radius: 4px;
-}
-#logout {
-  width: 70px;
-  height: 50px;
-  text-align: center;
-  border-radius: 4px;
-  background-color: brown;
-}
-.c-profile {
-  height: 20px;
-}
-.c-profile a {
-  color: #e40808;
-}
-.expensebuttonshow {
-  text-align: center;
-  color: crimson;
-}
-.expensebuttonshow a {
-  color: #e40808;
-}
-#premeiun-buttom {
-  width: 90px;
-  height: 60px;
-  margin-right: 40%;
-  background-color: cornflowerblue;
-}
-.swicth {
-}
+/* Header */
 .Header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
+  padding: 1rem;
   background-color: #333;
   color: #fff;
 }
@@ -272,64 +20,445 @@ body {
 .switch {
   display: flex;
   align-items: center;
-}
-
-.switch label {
-  margin-right: 10px;
-}
-
-.Header h3 {
-  margin: 0;
-}
-
-.Header a {
-  color: #fff;
-  text-decoration: none;
-  margin-right: 20px;
+  gap: 0.5rem;
 }
 
 #logout {
-  background-color: #ff4d4d;
+  background-color: #ff6347;
   color: #fff;
   border: none;
-  padding: 8px 16px;
-  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
   cursor: pointer;
 }
 
-#logout:hover {
-  background-color: #cc0000;
+/* Footer */
+.footerbox {
+  background-color: #333;
+  color: #fff;
+  padding: 1rem;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
+
 .footerbox a {
-  text-decoration: none;
-  color: #ccc;
-}
-.auth button {
-  background-color: #e85959;
   color: #fff;
 }
-#buttom-of-login {
-  background-color: #e85959;
+
+/* Auth */
+.auth {
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background-color: #f4f4f4;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-#Craete-new {
-  background-color: #e85959;
+
+#title h1 {
+  text-align: center;
 }
-.resetpassword button {
-  background-color: #e85959;
+
+.loginform {
+  margin-top: 1rem;
 }
-#Container button {
-  background-color: #e85959;
+
+.form-control {
+  margin-bottom: 1rem;
 }
-#expenses-container button {
-  background-color: #e85959;
+
+.form-control label {
+  display: block;
+  margin-bottom: 0.5rem;
 }
+
+.form-control input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn.toggle {
+  background-color: #28a745;
+}
+
+/* Store */
+.storecontainer {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
 #premeiun-buttom {
-  background-color: #e85959;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.welcome-profile {
+  text-align: center;
+}
+
+.title {
+  font-size: 1.5rem;
+}
+
+.message {
+  margin-bottom: 1rem;
+}
+
+.c-profile a {
+  background-color: #007bff;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.c-profile a:hover {
+  background-color: #0056b3;
+}
+
+/* Expenses */
+#expenses-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+#expenses-title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.expense-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.expense-item {
+  background-color: #f4f4f4;
+  padding: 1rem;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.expense-label {
+  font-weight: bold;
+}
+
+.expense-value {
+  margin-bottom: 0.5rem;
+}
+
+.deleteexpenses {
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.deleteexpenses:hover {
+  background-color: #c82333;
+}
+
+.editbutton {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.editbutton:hover {
+  background-color: #0056b3;
+}
+
+/* Add Expenses */
+#Container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+#addExpensesContainer {
+  background-color: #f4f4f4;
+  padding: 1rem;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.input-group {
+  margin-bottom: 1rem;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.input-group input,
+.input-group select {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.input-group select {
+  appearance: none;
+}
+
+.input-group button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.input-group button:hover {
+  background-color: #0056b3;
+}
+
+.expensebuttonshow {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.expensebuttonshow a {
+  background-color: #007bff;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.expensebuttonshow a:hover {
+  background-color: #0056b3;
+}
+#white {
+  background-color: #ccc;
 }
 #black {
-  background-color: #0e0d0d;
-  color: #f7f7f7;
+  background-color: black;
 }
-.welcome-profile {
-  background-color: #e85959;
+#black a {
+  color: #ccc;
+}
+#black h3,
+p {
+  color: #fff;
+}
+#white a {
+  color: black;
+}
+.Header a {
+  color: #ccc;
+  text-decoration: none;
+}
+.Header button {
+  width: 120px;
+}
+#premeiun-buttom {
+  width: 200px;
+  margin-left: 120%;
+}
+.PDF {
+  margin-left: 30%;
+  text-decoration: none;
+}
+/* Profile.css */
+
+.profile {
+  max-width: 600px;
+  margin: 0 auto;
+  height: 600px;
+  padding: 2rem;
+}
+
+.user-profile {
+  background-color: #f4f4f4;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.user-profile h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.user-profile p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.user-profile-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-profile-form div {
+  margin-bottom: 1.5rem;
+}
+
+.user-profile-form label {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.user-profile-form input[type="text"],
+.user-profile-form input[type="url"] {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.alert {
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+}
+
+.alert-danger {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.alert-success {
+  background-color: #28a745;
+  color: #fff;
+}
+
+button[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+.auth {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+#title {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+#title h1 {
+  font-size: 2.5rem;
+  color: #333333;
+  margin: 0;
+}
+
+.loginform {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-control {
+  margin-bottom: 1.5rem;
+}
+
+.form-control label {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #555555;
+}
+
+.form-control input {
+  width: 100%;
+  padding: 0.7rem;
+  font-size: 1rem;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  transition: border-color 0.3s ease;
+}
+
+.form-control input:focus {
+  border-color: #007bff;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn {
+  padding: 0.8rem 1.5rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #007bff;
+  color: #ffffff;
+}
+
+.toggle {
+  background-color: #28a745;
+  color: #ffffff;
+}
+
+.toggle:hover {
+  background-color: #218838;
+}
+
+#reset-button {
+  background-color: #dc3545;
+  color: #ffffff;
+}
+
+#reset-button:hover {
+  background-color: #c82333;
+}
+#reset-buttom a {
+  color: white;
 }

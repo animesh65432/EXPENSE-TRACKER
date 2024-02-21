@@ -264,10 +264,12 @@ body {
   background-color: #0056b3;
 }
 #white {
-  background-color: #ccc;
+  background-color: #978888;
+  color: #121212;
 }
 #black {
-  background-color: black;
+  background-color: rgb(27, 26, 26);
+  color: #cccccc;
 }
 #black a {
   color: #ccc;
@@ -461,4 +463,25 @@ button[type="submit"]:hover {
 }
 #reset-buttom a {
   color: white;
+}
+#expenses-container {
+  color: #121212;
+}
+.user-profile {
+  color: #333;
+}
+.user-profile p {
+  color: #333;
+}
+.PDF {
+  color: #c82333;
+}
+.expenses-container label {
+  color: #333;
+}
+#userprofilecomponent {
+  height: 650px;
+}
+#userprofilecomponent img {
+  width: 300px;
 }

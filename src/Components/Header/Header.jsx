@@ -45,6 +45,13 @@ const Header = () => {
             </h3>
           )}
         </div>
+        <div>
+          {IsUserlog && (
+            <h3>
+              <Link to="/Userprofile">Profile</Link>
+            </h3>
+          )}
+        </div>
 
         {IsUserlog && (
           <button onClick={OnLogOutButtom} id="logout">

@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import ResetPassword from "../Customhooks/ResetPassword";
 import { Link } from "react-router-dom";
+import "./pass.css";
 const SetPassword = () => {
   let useremail = useRef();
 

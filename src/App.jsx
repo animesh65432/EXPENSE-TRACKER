@@ -7,6 +7,7 @@ import SetPassword from "./Password/SetPassword";
 import AddExpenses from "./Components/Expense/AddExpenses";
 import { useSelector } from "react-redux";
 import Store from "./Components/Stroe/Store";
+import UserProfile from "./Components/Profile/UserProfile";
 
 function App() {
   let value = useSelector((state) => state.Auth.tokens);
@@ -24,6 +25,7 @@ function App() {
               <Route path="/" element={<Store />}></Route>
               <Route path="/Profile" element={<Profile />}></Route>
               <Route path="/AddExpenses" element={<AddExpenses />}></Route>
+              <Route path="/Userprofile" element={<UserProfile />}></Route>
             </Routes>
             <Footer />
           </div>

@@ -33,23 +33,6 @@ const Profile = () => {
     fetchEmail();
   }, [tokens]);
 
-  const getProfileData = useCallback(() => {
-    axios
-      .post(
-        `https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyCeTJueOOOp9VIvedFWi7ZLOG_exHKBjq4`,
-        {
-          requestType: "VERIFY_EMAIL",
-          idToken: tokens
-        }
-      )
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [tokens]);
-
   const submitHandler = async (e) => {
     e.preventDefault();
     const fullName = fullNameRef.current.value;
@@ -72,6 +55,7 @@ const Profile = () => {
       )
       .then((res) => {
         console.log("you have made successfully call", res);
+        alert("You Sucessfully Update  your profile");
       })
       .catch((error) => {
         console.log(error);

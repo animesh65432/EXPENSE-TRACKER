@@ -36,20 +36,36 @@ const UserProfile = () => {
     };
   });
 
+  if (username === "" && photourl === "" && useremail === "") {
+    return (
+      <div>
+        <p>Please fill the from</p>
+      </div>
+    );
+  }
+
   return (
     <>
       <div id="userprofilecomponent">
-        <div id="userprofilecomponent-container">
-          <div id="userphoto">
-            <img src={photourl} className="userphoto"></img>
-          </div>
+        {(username === "" || photourl === "" || useremail === "") && (
           <div>
-            <p>USERNAME : {username.toLocaleUpperCase()}</p>
+            <p>Please fill the form</p>
           </div>
-          <div>
-            <p>USEREMAIL : {useremail.toLocaleUpperCase()}</p>
+        )}
+
+        {username !== "" && photourl !== "" && useremail !== "" && (
+          <div id="userprofilecomponent-container">
+            <div id="userphoto">
+              <img src={photourl} className="userphoto" alt="User"></img>
+            </div>
+            <div>
+              <p>USERNAME : {username}</p>
+            </div>
+            <div>
+              <p>USEREMAIL : {useremail}</p>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </>
   );

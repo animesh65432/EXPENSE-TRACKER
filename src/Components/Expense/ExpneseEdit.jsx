@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 const ExpenseEdit = ({
   id,
@@ -7,22 +8,23 @@ const ExpenseEdit = ({
   description: initialDescription,
   category: initialCategory,
   date: initialDate,
-  onUpdate
+  onUpdate,
 }) => {
   const [money, setMoney] = useState(initialMoney);
   const [description, setDescription] = useState(initialDescription);
   const [category, setCategory] = useState(initialCategory);
   const [date, setDate] = useState(initialDate);
+  const emailsperation = useSelector((state) => state.email.value);
 
   const handleUpdate = async () => {
     try {
       const response = await axios.patch(
-        `https://sgarpner-project-default-rtdb.firebaseio.com/Save/${id}.json`,
+        `https://sgarpner-project-default-rtdb.firebaseio.com/${emailsperation}/Save/${id}.json`,
         {
           money,
           description,
           category,
-          date
+          date,
         }
       );
       onUpdate(id, money, description, category, date);

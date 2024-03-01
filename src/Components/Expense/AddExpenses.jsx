@@ -2,12 +2,14 @@ import React, { useRef } from "react";
 import axios from "axios";
 import "./expense.css";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const AddExpenses = () => {
   const Moneyref = useRef();
   const Descriptionref = useRef();
   const Categoryref = useRef();
   const Dateref = useRef();
+  const emailsperation = useSelector((state) => state.email.value);
 
   const onSubmitAddExpenses = async () => {
     const Usermoney = Moneyref.current.value;
@@ -21,12 +23,12 @@ const AddExpenses = () => {
 
     try {
       await axios.post(
-        `https://sgarpner-project-default-rtdb.firebaseio.com/Save.json`,
+        `https://sgarpner-project-default-rtdb.firebaseio.com/${emailsperation}/Save.json`,
         {
           money: Usermoney,
           description: Description,
           category: Category,
-          date: Date
+          date: Date,
         }
       );
 

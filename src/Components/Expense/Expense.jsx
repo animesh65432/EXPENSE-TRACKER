@@ -3,12 +3,12 @@ import axios from "axios";
 import { Expenses } from "../../assets/images";
 import ExpenseEdit from "./ExpneseEdit";
 import { updatethearray } from "../../Reduex/Slices/Expenses";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 const Expense = () => {
   const [data, setData] = useState([]);
   const [editItemId, setEditItemId] = useState(null);
   const dispatch = useDispatch();
-
+  const emailsperation = useSelector((state) => state.email.value);
   useEffect(() => {
     fetchData();
     console.log("we are feching data");
@@ -17,11 +17,11 @@ const Expense = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        `https://sgarpner-project-default-rtdb.firebaseio.com/Save.json`
+        `https://sgarpner-project-default-rtdb.firebaseio.com/${emailsperation}/Save.json`
       );
       const dataArray = Object.keys(response.data).map((id) => ({
         id: id,
-        ...response.data[id]
+        ...response.data[id],
       }));
       setData(dataArray);
       dispatch(updatethearray(dataArray));
@@ -38,7 +38,7 @@ const Expense = () => {
           money,
           description,
           category,
-          date
+          date,
         };
       }
       return item;
@@ -51,7 +51,7 @@ const Expense = () => {
   const handleDelete = async (id, money) => {
     try {
       await axios.delete(
-        `https://sgarpner-project-default-rtdb.firebaseio.com/Save/${id}.json`
+        `https://sgarpner-project-default-rtdb.firebaseio.com/${emailsperation}/Save/${id}.json`
       );
       const filteredData = data.filter((item) => item.id !== id);
       setData(filteredData);

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { OnUserDelete } from "../../Reduex/Slices/AuthReducer";
 import { Onchangetoggole } from "../../Reduex/Slices/toggoleSlice";
 import ReactSwitch from "react-switch";
+import { deleteemail } from "../../Reduex/Slices/usersperation";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -14,6 +15,7 @@ const Header = () => {
   let IsUserlog = !!value;
   const OnLogOutButtom = () => {
     dispatch(OnUserDelete());
+    dispatch(deleteemail());
     navigate("/");
   };
 
